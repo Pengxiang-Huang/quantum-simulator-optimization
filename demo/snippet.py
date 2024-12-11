@@ -8,8 +8,7 @@ SWAP = array([
   [0, 0, 0, 1]
 ])
 CNOT = array([
-  [1, 0, 0, 0],
-  [0, 1, 0, 0],
+  [1, 0, 0, 0], [0, 1, 0, 0],
   [0, 0, 0, 1],
   [0, 0, 1, 0]
 ])
@@ -49,9 +48,8 @@ x4 = Init(4)
 x4 = matmul(x3, x4)
 x5 = Id(2)
 x6 = Id(4)
+
 x4 = matmul(kron(kron(x5, H), x6), x4)
-print(kron(kron(x5, H), x6).shape)
-print(x4.shape)
 x4 = matmul(kron(kron(x1, SWAP), x6), x4)
 x4 = matmul(kron(kron(x5, CNOT), x5), x4)
 x4 = matmul(kron(kron(x6, SWAP), x1), x4)
@@ -63,7 +61,8 @@ x4 = matmul(kron(kron(x5, SWAP), x5), x4)
 x4 = matmul(kron(kron(x5, CNOT), x5), x4)
 x4 = matmul(kron(kron(x1, H), x2), x4)
 x4 = matmul(kron(kron(x5, H), x6), x4)
-print_result(x4, 2 ** 4)
 ()
 print("--- %s seconds ---" % (time.time() - start_time))
+
+print_result(x4, 2**4)
 
